@@ -11,6 +11,17 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/', [
+    'as' => '/', 'uses' => 'Controller@index'
+]);
+
+$router->get('/telegram', [
+    'as' => 'telegram', 'uses' => 'TelegramController@index'
+]);
+$router->post('/telegram', [
+    'as' => 'telegram', 'uses' => 'TelegramController@index'
+]);
+
+/*$router->post('/telegram/save_token', [
+    'as' => '/telegram/save_token', 'uses' => 'TelegramController@saveToken'
+]);*/
