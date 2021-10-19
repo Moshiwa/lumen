@@ -3,7 +3,6 @@
 namespace App\Http\Components;
 use Illuminate\Support\Facades\App;
 
-'1655887676:AAES26t6T9kokZhqEgSRZyjcntQjsioskbQ';
 class TelegramComponent
 {
     protected $file = '';
