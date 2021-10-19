@@ -1,0 +1,139 @@
+body {
+    height: 100vh;
+    --main-color: #f0f0f0;
+    --main-text-color: #808080;
+    --white: #ffffff;
+    --bottom-padding: 20px;
+    --footer-height: 100px;
+    --header-height: 60px;
+
+    /*font*/
+    --big-font-size: 2.5em;
+    --medium-font-size: 1.8em;
+    --common-font-size: 1.3em;
+    --small-font-size: 0.9em;
+
+    --font-family: system-ui;
+
+    --big-font-weight: 800;
+    --medium-font-weight: 700;
+    --common-font-weight: 500;
+    --small-font-weight: 100;
+
+
+}
+/*wrapper*/
+.wrapper {
+    position: relative;
+    max-height: fit-content;
+    min-height: calc(100vh - var(--footer-height));
+    background: var(--main-color);
+}
+/*header*/
+.header {
+    box-sizing: border-box;
+    background: var(--main-color);
+}
+.header>.header__container {
+    width: 100%;
+    height: var(--header-height);
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.header__container>.first-item {
+    flex: 1;
+}
+.header__container>.other-item {
+    flex: 5;
+}
+.header__container>.header__item {
+    text-align: center;
+}
+
+.link {
+    text-decoration: none;
+}
+.link:link {
+    color: var(--white);
+}
+.link:visited {
+    color: var(--white);
+}
+.link:hover {
+    color: var(--white);
+}
+.link:active {
+    color: var(--white);
+}
+.link>.link__shell {
+    height: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.link>.link__shell:hover {
+    filter: brightness(0.9);
+}
+.header__link>.home {
+    background: #f179c6;
+}
+.header__link>.telegram {
+    background: #edc264;
+}
+.header__link>.tools {
+    background: #c6d05e;
+}
+
+.header__link>.WTG {
+    background: #9ae18a;
+}
+/*end header*/
+
+/*content*/
+.content {
+    height: calc(100% - (var(--footer-height) + var(--header-height)));
+    padding: 20px 40px 20px 40px;
+    box-sizing: border-box;
+}
+/*end content*/
+
+/*footer*/
+.footer {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: var(--footer-height);
+    background: #1f2d3d;
+}
+.footer>.footer-wrapper {
+    height: 100%;
+    display: flex;
+    padding: 20px 40px 20px 40px;
+    box-sizing: border-box;
+}
+.footer .footer__column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+/*end footer*/
+
+/*fonts*/
+h1 {
+    font-family: var(--font-family);
+    font-weight: var(--big-font-weight);
+    font-size: var(--big-font-size);
+    margin: 0;
+    color: #374352;
+}
+.font-nav {
+    font-family: system-ui;
+    font-size: 36px;
+    font-weight: 700;
+    cursor: pointer;
+}
+/*end fonts*/
+
+hr {
+    margin: 30px 0 30px 0;
+}

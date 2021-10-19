@@ -22,6 +22,6 @@ $router->post('/telegram', [
     'as' => 'telegram', 'uses' => 'TelegramController@index'
 ]);
 
-/*$router->post('/telegram/save_token', [
-    'as' => '/telegram/save_token', 'uses' => 'TelegramController@saveToken'
-]);*/
+$router->get('/tools', [
+    'as' => '/tools', 'uses' => 'ToolsController@index'
+]);

@@ -39,6 +39,9 @@ class TelegramLib
         $response = json_decode($response, true);
 
         if (empty($response['ok'])) {
+            $errorMessage = empty($response['description']) ? '' : "description: {$response['description']} ";
+            $errorMessage .= empty($response['error_code']) ? '' : "error_code: {$response['error_code']} ";
+            $this->error = $errorMessage;
             error_log('TelegramBotLib->getMe: Wrong query');
             return []; // ToDo return error message
         }
