@@ -1,5 +1,6 @@
 @push('scripts')
     <script src="js/libraries/jquery-3.6.0.min.js"></script>
+    <script src="js/render_helper.js"></script>
 @endpush
 <!DOCTYPE html>
 <html lang="ru">

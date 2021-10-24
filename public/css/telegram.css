@@ -1,0 +1,14 @@
+.telegram-api {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+}
+.telegram-api__left-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 20%;
+}
+.telegram-api__right-block {
+    max-width: 80%;
+}

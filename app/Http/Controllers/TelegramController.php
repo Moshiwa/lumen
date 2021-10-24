@@ -11,35 +11,64 @@ class TelegramController extends BaseController
 {
     public function index(Request $request)
     {
-        $TelegramComponent = new TelegramComponent();
-        $accessToken = $TelegramComponent->getSettingFromFile('Telegram.access_token');
-
-        if (! empty($request->request->all())) {
-            $accessToken = $request->request->get('access_token');
-            $TelegramLib = new TelegramLib($accessToken);
-            $response = $TelegramLib->getMe();
-            if(empty($response['ok'])) {
-                $error = $TelegramLib->getError();
-                if (! empty($error)) {
-                    return view('telegram', ['error' => $error]);
-                }
-                return view('telegram', ['error' => 'Wrong access_token']);
+        $auth = false;
+        if (! empty($_COOKIE['access_token_telegram'])) {
+            $token = $_COOKIE['access_token_telegram'];
+            $auth = true;
+            if (! empty($_COOKIE['telegram_bot_username'])) {
+                $username = $_COOKIE['telegram_bot_username'];
+                return view('telegram', [
+                    'is_auth_telegram' => $auth,
+                    'access_token' => $token,
+                    'telegram_bot_username' => $username
+                ]);
             }
-            $TelegramComponent = new TelegramComponent();
-            $TelegramComponent->saveSettingToFile('Telegram.access_token', $accessToken);
 
-            return view('telegram', ['access_token' => $accessToken, 'result' => $response['result']]);
+            return view('telegram', [
+                'is_auth_telegram' => $auth,
+                'access_token' => $token,
+            ]);
         }
-        return view('telegram', ['access_token' => $accessToken]);
+
+        return view('telegram', [
+            'is_auth_telegram' => $auth,
+        ]);
     }
 
     public function send($method)
+    {   }
+
+    public function auth(Request $request)
     {
-        //send to TelegramComponent -> TelegramLib
+        setcookie('telegram_bot_username', '');
+        setcookie('access_token_telegram', '');
+
+        if (! empty($request->json('token'))) {
+            $token = $request->json('token');
+            $TelegramLib = new TelegramLib($token);
+            $response = $TelegramLib->getMe();
+            if (! empty($response)) {
+                if (! empty($response['result']['username'])) {
+                    setcookie('telegram_bot_username', $response['result']['username']);
+                }
+                setcookie('access_token_telegram', $token);
+                return $response;
+            }
+        }
+
+        return ['ok' => false];
     }
 
     public function getMe()
     {
+        if (! empty($_COOKIE['access_token_telegram'])) {
+            $accessToken = $_COOKIE['access_token_telegram'];
+            $TelegramLib = new TelegramLib($accessToken);
+            $response = $TelegramLib->getMe();
 
+            return json_encode($response);
+        }
+
+        return [];
     }
 }

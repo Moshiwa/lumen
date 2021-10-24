@@ -18,8 +18,11 @@ $router->get('/', [
 $router->get('/telegram', [
     'as' => 'telegram', 'uses' => 'TelegramController@index'
 ]);
-$router->post('/telegram', [
-    'as' => 'telegram', 'uses' => 'TelegramController@index'
+$router->get('/telegram/get_me', [
+    'as' => '/telegram/get_me', 'uses' => 'TelegramController@getMe'
+]);
+$router->post('/telegram/auth', [
+    'as' => 'telegram/auth', 'uses' => 'TelegramController@auth'
 ]);
 
 $router->get('/tools', [
