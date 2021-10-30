@@ -28,14 +28,14 @@
             </div>
             <div class="left-block__get-me">
                 @if($is_auth_telegram)
-                    <button class="button js-getMe">Получить информацию о боте</button>
+                    <button class="button js-getMe">Get BotInfo</button>
                 @endif
             </div>
         </div>
 
         <div class="telegram-api__right-block">
             <div class="right-block__response">
-                <code></code>
+
             </div>
         </div>
     </div>

@@ -7,8 +7,34 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 15px;
     max-width: 20%;
+    min-width: 50px;
 }
 .telegram-api__right-block {
+    display: flex;
+    padding: 15px;
     max-width: 80%;
+    min-width: 80%;
+}
+
+.right-block__response {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.response__get-me {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    border: 1px solid #a4a3a3;
+    border-radius: 4px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.get-me__clear {
+    cursor: pointer;
 }

@@ -17,28 +17,28 @@
         <div class="header__container">
             <div class="header__item first-item">
                 <a href="/" class="header__link link">
-                    <div class="link__shell home">
+                    <div class="link__shell home random-color">
                         <div class="font-nav">Home</div>
                     </div>
                 </a>
             </div>
             <div class="header__item other-item">
                 <a href="/telegram" class="header__link link">
-                    <div class="link__shell telegram">
+                    <div class="link__shell telegram random-color">
                         <div class="font-nav">Telegram</div>
                     </div>
                 </a>
             </div>
             <div class="header__item other-item">
                 <a href="/tools" class="header__link link">
-                    <div class="link__shell tools">
+                    <div class="link__shell tools random-color">
                         <div class="font-nav">Tools</div>
                     </div>
                 </a>
             </div>
             <div class="header__item other-item">
                 <a href="/" class="header__link link">
-                    <div class="link__shell WTG">
+                    <div class="link__shell WTG random-color">
                         <div class="font-nav">WTG</div>
                     </div>
                 </a>

@@ -14,7 +14,6 @@
 $router->get('/', [
     'as' => '/', 'uses' => 'Controller@index'
 ]);
-
 $router->get('/telegram', [
     'as' => 'telegram', 'uses' => 'TelegramController@index'
 ]);
