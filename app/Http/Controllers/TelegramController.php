@@ -65,10 +65,61 @@ class TelegramController extends BaseController
             $accessToken = $_COOKIE['access_token_telegram'];
             $TelegramLib = new TelegramLib($accessToken);
             $response = $TelegramLib->getMe();
+            $error = $TelegramLib->error();
+
+            if( empty($error)) {
+                return json_encode(['error' => $error]);
+            }
 
             return json_encode($response);
         }
 
         return [];
+    }
+
+    public function sendMessage($message)
+    {
+        if (! empty($_COOKIE['access_token_telegram'])) {
+            $accessToken = $_COOKIE['access_token_telegram'];
+            $TelegramLib = new TelegramLib($accessToken);
+            $response = $TelegramLib->sendMessage();
+            $error = $TelegramLib->error();
+
+            if(! empty($error)) {
+                return json_encode(['error' => $error]);
+            }
+
+            return json_encode($response);
+        }
+
+        return [];
+    }
+
+    public function setWebhook()
+    {
+        if (empty($_COOKIE['access_token_telegram'])) {
+            return [];
+        }
+
+        $accessToken = $_COOKIE['access_token_telegram'];
+        $callbackUrl = 'https://7e91-94-181-145-212.ngrok.io/telegram/get_webhook';
+
+        $TelegramLib = new TelegramLib($accessToken);
+        $response = $TelegramLib->setWebhook($callbackUrl);
+        $error = $TelegramLib->error();
+
+        if(! empty($error)) {
+            return json_encode(['error' => $error]);
+        }
+
+        return json_encode($response);
+    }
+
+    public function getWebhook(Request $request)
+    {
+        $fd = fopen("helper.json", 'w') or die("не удалось создать файл");
+        $str = json_encode($request);
+        fwrite($fd, $str);
+        fclose($fd);
     }
 }

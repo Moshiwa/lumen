@@ -15,22 +15,29 @@
         <div class="telegram-api__left-block">
             <div class="left-block__auth">
                 @if(! empty($telegram_bot_username))
+                    <div class="telegram-access-token">Connected!</div>
                     <div class="access-token__container">
-                        <div class="telegram-access-token">{{$telegram_bot_username}}</div>
                         <button class="button js-clear-auth-telegram">Clear</button>
                     </div>
                 @else
+                    <div class="telegram-access-token">Disconnected!</div>
                     <div class="not-access-token__container">
                         <input type="text" class="js-auth-input"/>
                         <button class="button js-auth-telegram">Auth</button>
                     </div>
                 @endif
             </div>
-            <div class="left-block__get-me">
-                @if($is_auth_telegram)
+            @if($is_auth_telegram)
+                <div class="left-block__get-me">
                     <button class="button js-getMe">Get BotInfo</button>
-                @endif
-            </div>
+                </div>
+                <div class="left-block__set-webhook">
+                    <button class="button js-setWebhook">Get BotInfo</button>
+                </div>
+                {{--<div class="left-block__send-message">
+                    <button class="button js-send-message">Send msg</button>
+                </div>--}}
+            @endif
         </div>
 
         <div class="telegram-api__right-block">

@@ -20,6 +20,13 @@ $router->get('/telegram', [
 $router->get('/telegram/get_me', [
     'as' => '/telegram/get_me', 'uses' => 'TelegramController@getMe'
 ]);
+$router->get('/telegram/set_webhook', [
+    'as' => 'telegram/set_webhook', 'uses' => 'TelegramController@setWebhook'
+]);
+$router->get('/telegram/get_webhook', [
+    'as' => 'telegram/get_webhook', 'uses' => 'TelegramController@getWebhook'
+]);
+
 $router->post('/telegram/auth', [
     'as' => 'telegram/auth', 'uses' => 'TelegramController@auth'
 ]);

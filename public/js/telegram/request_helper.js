@@ -10,6 +10,9 @@ function eventsInit() {
     $(document).on('click', '.js-getMe', function (e) {
         getMe('/telegram/get_me');
     });
+    $(document).on('click', '.js-setWebhook', function (e) {
+        setWebhook('/telegram/set_webhook');
+    });
 
     $(document).on('click', '.js-get-me__clear', function (e) {
         let currentElement = $(e.target);
@@ -96,27 +99,53 @@ function getMe(url) {
             return data;
         })
         .then(function (data){
-            let id = data.result.id;
-            let username = data.result.username;
             let parentElement =  $('.right-block__response');
-            if (parentElement.find('.response__get-me').length === 0) {
-                $('.right-block__response').append(`
+            if (data.error !== undefined) {
+                let error = data.error;
+                parentElement.append(`
                 <div class="response__get-me">
                     <div class="get-me__id">
-                        <div class="title">Id: </div>
-                        <div class="value">${id}</div>
-                    </div>
-                    <div class="get-me__username">
-                        <div class="title">BotName: </div>
-                        <div class="value">${username}</div>
+                        <div class="title">Error: </div>
+                        <div class="value">${error}</div>
                     </div>
                     <div class="js-get-me__clear get-me__clear">x</div>
                 </div>
                 `);
+
+            } else {
+                let id = data.result.id;
+                let username = data.result.username;
+                if (parentElement.find('.response__get-me').length === 0) {
+                    parentElement.append(`
+                    <div class="response__get-me">
+                        <div class="get-me__id">
+                            <div class="title">Id: </div>
+                            <div class="value">${id}</div>
+                        </div>
+                        <div class="get-me__username">
+                            <div class="title">BotName: </div>
+                            <div class="value">${username}</div>
+                        </div>
+                        <div class="js-get-me__clear get-me__clear">x</div>
+                    </div>
+                    `);
+                }
             }
-        })
-    ;
+        });
 }
 
+function setWebhook(url) {
+    fetch(url)
+        .then(function (response) {
+            let data = response.json();
+            if (data.length === 0) {
+                console.error('data is empty');
+                return {};
+            }
+            return data;
+    }).then(function (data){
+        console.log(data)
+    });
+}
 
 
